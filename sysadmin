@@ -1,0 +1,41 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use DateTime;
+
+my $task = '';
+
+open(MYINPUTFILE, "<test");
+while(<MYINPUTFILE>)
+{
+	my($line) = $_;
+
+		if ($line =~ /^[#|\s]/) {
+			print "$line";
+			if ($line =~ /^###(.*)###/) {
+				$task = $1;
+			}
+		}
+		else {
+			print "    $line";
+			print "\n";
+
+			my $continue = '';
+			until($continue =~ /^y$/i ) {
+				print "continue (y): ";
+				chomp($continue = <STDIN>);
+			}
+
+			my $datetime = DateTime->now();
+
+			if ($task) {
+				print "$ENV{'USER'} completed task $task at $datetime UTC\n";
+			}
+			else {
+				print "$ENV{'USER'} completed unlabelled task at $datetime UTC\n";
+			}
+			$task = '';
+		}
+
+}
