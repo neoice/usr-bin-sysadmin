@@ -1,0 +1,19 @@
+#!/usr/bin/sysadmin
+
+### comments ###
+# anything that is a comment is parsed as "text"
+# and printed on stdout.
+#
+# non-comment lines are "code examples".
+
+/bin/echo "commands are tasks that the sysadmin will run."
+
+### commands ###
+# the interpretter will pause and prompt (y/n) for the completion
+# of the action. some commands will use the sysadmin as the
+# interpretter. for example:
+
+ssh -i /var/backups/.ssh/id_rsa backupuser@$HOST
+
+# tasks do not need to be labelled either
+/bin/echo "this may be changed later as the shell evolves"
